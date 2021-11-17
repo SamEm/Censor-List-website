@@ -1,14 +1,27 @@
+import { useState } from 'react';
 import styled from "styled-components";
 import { H3, ButtonDesign } from '../theme/GlobalStyles';
 import Download from './Download';
 
 export default function LeftBar({ filterCategories, selectedPhrases, globalState, setGlobalState }) {
+  const [buttonState, setButtonState] = useState({
+    gearbot: true,
+    dyno: false,
+  })
   
   const changePreset = async (e, i) => {
+    const buttonID = e.target.dataset.preset;
     console.dir(e.target.dataset)
     //change color on click
+    setButtonState({
+      gearbot: false,
+      dyno: false
+    })
+    setButtonState({
+      buttonID: true
+    })
     setGlobalState({
-      preset: e.target.dataset.preset,
+      preset: buttonID,
       presetJoin: e.target.dataset.join
     })
   }

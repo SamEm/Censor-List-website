@@ -8,53 +8,6 @@ import Categories from './components/Categories';
 
 import ListOfCategories from './censors/bad_phrases.json';
 
-// const ListOfCategories = [
-//   {
-//     categoryName: 'ASCII Copy Pasta',
-//     words: [
-//       'ヽつ',
-//       '░',
-//       '⣶',
-//       '▋',
-//       'ඞ',
-//       '╚',
-//       'ｂ',
-//       '▒',
-//       '▓',
-//       '卐',
-//       '⣧',
-//       '⠌',
-//       '⡼',
-//       '⠰',
-//       '⢸',
-//       '⢀',
-//       '⊂',
-//     ]
-//   },
-//   {
-//     categoryName: 'NSFW',
-//     words: [
-//       'pussy',
-//       'penis',
-//       'cock',
-//       'dick',
-//       'cum',
-//       'rape',
-//       'blowjob',
-//       'boob',
-//       'b0',
-//       'bo0b',
-//       'horny',
-//       'titt',
-//       'vagina',
-//       'porn',
-//       'p0rn',
-//       'sperm',
-//       'ejaculate',
-//       'pen15',
-//     ]
-//   },
-// ]
 console.log('loc',ListOfCategories)
 
 export default function App() {
