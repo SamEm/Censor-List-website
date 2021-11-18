@@ -73,7 +73,6 @@ export default function Categories({ categoryList, selectedPhrases, setSelectedP
   )
 }
 
-
 const CategoryWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -121,21 +120,7 @@ const SmallButton = styled.div`
   }
 `;
 
-const GhostButton = styled.button`
-  outline: none;
-  background: transparent;
-  border: none;
-  color: ${props => props.theme.colors[props.color]};
-  cursor: pointer;
-
-  :hover {
-    color: ${props => props.theme.colors[`${props.color}Hover`]};
-  }
-`;
-
 const CensorWordsWrap = styled.div`
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
