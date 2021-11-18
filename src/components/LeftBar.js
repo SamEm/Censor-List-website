@@ -1,63 +1,92 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from "styled-components";
-import { H3, ButtonDesign } from '../theme/GlobalStyles';
+import { H3, RoundButtonDesign } from '../theme/GlobalStyles';
 import Download from './Download';
 
 export default function LeftBar({ filterCategories, selectedPhrases, globalState, setGlobalState }) {
   const [buttonState, setButtonState] = useState({
     gearbot: true,
     dyno: false,
-  })
+  });
+  const [phraseCountHigh, setPhraseCountHigh] = useState(false);
+  const {gearbot, dyno} = buttonState;
   
+  useEffect(() => {
+    if (selectedPhrases.length <= 400) {
+      setPhraseCountHigh(false);
+    }
+    else {
+      setPhraseCountHigh(true);
+    }
+  }, [selectedPhrases.length])
+
   const changePreset = async (e, i) => {
     const buttonID = e.target.dataset.preset;
-    console.dir(e.target.dataset)
-    //change color on click
     setButtonState({
       gearbot: false,
-      dyno: false
-    })
-    setButtonState({
-      buttonID: true
+      dyno: false,
+      [buttonID]: true
     })
     setGlobalState({
       preset: buttonID,
-      presetJoin: e.target.dataset.join
+      presetSplit: e.target.dataset.join
     })
   }
 
+  const copyText = () => {
+    navigator.clipboard.writeText(selectedPhrases);
+  }
+  
   return(
     <Container>
       <HeaderWrap>
-        <WordCountWrap>
+        <WordCountWrap phraseCountHigh={phraseCountHigh}>
           <H3>Phrases picked:</H3>
           <WordCount>
-            {selectedPhrases.length <= 400 ? <Green>{selectedPhrases.length}</Green> : <Red>{selectedPhrases.length}</Red>}/<span>400</span>
+            <Count phraseCountHigh={phraseCountHigh}>{selectedPhrases.length}</Count>/<span>400</span>
           </WordCount>
         </WordCountWrap>
         <Wrap>
           <H3>Choose bot preset</H3>
-          <Preset picked 
+          <Preset 
             onClick={changePreset}
             data-preset='gearbot'
-            data-join='\n'
+            data-join={'\n'}
+            selected={gearbot}
           >
             Gearbot</Preset>
           <Preset
             onClick={changePreset}
             data-preset='dyno'
-            data-join=', '
+            data-join={', '}
+            selected={dyno}
           >
             Dyno</Preset>
         </Wrap>
-        <Download
-          selectedPhrases={selectedPhrases}
-          globalState={globalState}
-        />
+        <Wrap>
+          <H3>Instructions</H3>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+          </p>
+        </Wrap>
+        {
+          !!gearbot && 
+          <Download
+            selectedPhrases={selectedPhrases}
+            globalState={globalState}
+          />
+        }
+        {
+          !!dyno && 
+          <RoundButtonDesign onClick={copyText}>
+            Copy phrases
+          </RoundButtonDesign>
+        }
+        
         <PreviewWrap>
           <H3>File preview:</H3>
           <Preview>
-            {selectedPhrases.join(globalState.presetJoin)}
+            {selectedPhrases.join(globalState.presetSplit)}
           </Preview>
         </PreviewWrap>
       </HeaderWrap>
@@ -81,14 +110,14 @@ const HeaderWrap = styled.div`
 
 const WordCountWrap = styled.div`
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   gap: 5px;
 
   ${H3} {
     margin-bottom: 0;
   }
-  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid ${props => props.phraseCountHigh ? props.theme.colors.red : props.theme.colors.green};
 `;
 
 const WordCount = styled.div`
@@ -96,28 +125,27 @@ const WordCount = styled.div`
   gap: 2px;
 `;
 
-const Green = styled.div`
-  color: ${props => props.theme.colors.green};
-`;
-const Red = styled.div`
-  color: ${props => props.theme.colors.red};
+const Count = styled.div`
+  color: ${props => props.phraseCountHigh ? props.theme.colors.red : props.theme.colors.green};
 `;
 
-const Wrap = styled.div`
-
-`;
+const Wrap = styled.div``;
 
 const Preset = styled.div`
-  background-color: ${props => props.picked ? props.theme.colors.green : props.theme.colors.button};
-  color: ${props => props.picked && props.theme.colors.black};
+  background-color: ${props => props.selected ? props.theme.colors.green : props.theme.colors.button};
+  color: ${props => props.selected && props.theme.colors.black};
   border-radius: 5px;
   cursor: pointer;
   padding: 10px 15px;
+  margin: 5px 0;
+  
+  ${props => props.theme.shading.soft};
+  :hover {
+    background-color: ${props => props.selected ? props.theme.colors.greenHover : props.theme.colors.buttonHover};
+  }
 `;
 
-const PreviewWrap = styled.div`
-
-`;
+const PreviewWrap = styled.div``;
 
 const Preview = styled.pre`
   height: 200px;
