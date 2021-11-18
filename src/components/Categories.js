@@ -39,8 +39,8 @@ export default function Categories({ categoryList, selectedPhrases, setSelectedP
               <CategoryHeaderWrap>
                 <CategoryHeader>{category.categoryName}</CategoryHeader>
                 <Div>
-                  <GhostButton data-value={category.categoryName} onClick={addAllClick}>Add all</GhostButton>
-                  <GhostButton data-value={category.categoryName} onClick={removeAllClick}>Remove all</GhostButton>
+                  <SmallButton color={'green'} data-value={category.categoryName} onClick={addAllClick}>Add all</SmallButton>
+                  <SmallButton color={'red'} data-value={category.categoryName} onClick={removeAllClick}>Remove all</SmallButton>
                 </Div>
 
               </CategoryHeaderWrap>
@@ -106,12 +106,31 @@ const Div = styled.div`
   gap: 15px;
 `;
 
+const SmallButton = styled.div`
+  background-color: ${props => props.theme.colors.button};
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+
+  ${props => props.theme.shading.soft};
+  :hover {
+    background-color: ${props => props.theme.colors[props.color]};
+    ${props => props.theme.shading.hard};
+    color: ${props => props.color === 'green' && props.theme.colors.black}; 
+  }
+`;
+
 const GhostButton = styled.button`
   outline: none;
   background: transparent;
   border: none;
-  color: ${props => props.theme.colors.pink};
+  color: ${props => props.theme.colors[props.color]};
   cursor: pointer;
+
+  :hover {
+    color: ${props => props.theme.colors[`${props.color}Hover`]};
+  }
 `;
 
 const CensorWordsWrap = styled.div`
@@ -127,6 +146,11 @@ const Word = styled.div`
   border-radius: 5px;
   cursor: pointer;
   padding: 10px 15px;
+
+  ${props => props.theme.shading.soft};
+  :hover {
+    background-color: ${props => props.theme.colors.buttonHover};
+  }
 `;
 
 const WordClicked = styled.div`
@@ -135,4 +159,9 @@ const WordClicked = styled.div`
   border-radius: 5px;
   cursor: pointer;
   padding: 10px 15px;
+
+  ${props => props.theme.shading.soft};
+  :hover {
+    background-color: ${props => props.theme.colors.greenHover};
+  }
 `;

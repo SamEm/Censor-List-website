@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import styled from "styled-components";
-import { ButtonDesign } from '../theme/GlobalStyles';
+import { RoundButtonDesign } from '../theme/GlobalStyles';
 
 export default function Download({ selectedPhrases, globalState }) {
   const [fileName, setFileName] = useState(null);
@@ -29,9 +29,9 @@ export default function Download({ selectedPhrases, globalState }) {
 
   return(
     <DownloadBar>
-      <ButtonDesign onClick={downloadFile}>
+      <RoundButtonDesign onClick={downloadFile}>
         Download
-      </ButtonDesign>
+      </RoundButtonDesign>
       <HiddenLink
         download={fileName}
         href={fileDownloadUrl}
