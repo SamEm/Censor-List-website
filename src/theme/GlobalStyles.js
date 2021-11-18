@@ -1,34 +1,27 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 // d22e4c Froot
+// b5d784 Froot green
 // d91e40 Nice red
 const theme = {
 
   colors: {
-    primary: '#d22e4c',
-    primaryHover: '',
+    primary: '#b5d784',
+    primaryHover: '#d22e4c',
     primaryActive: '',
-    dmpBlue: '#0f274d',
-    button: '#262645',
-    blurpleLight: '#5865F2',
-    blurpleSemi: '#808AFF',
-    green: '#2ecc71',
-    pink: '#eb459e',
+    button: 'rgba(38, 38, 69, 1)',
+    buttonHover: 'rgba(34, 34, 61, 1)',
+    green: 'rgba(46, 204, 113, 1)',
+    greenHover: 'rgba(42, 184, 102, 1)',
     red: '#d22e4c',
-    lightGray: '#36393F',
+    redHover: '#e63253',
     black: '#000000',
-
-    textLight: '#E6F1FF',
     white: '#ffffff',
-    textDim: '#919BA8',
-    textDark: '#11111f',
-    // background: '#1b203a',
     background: 'rgb(17, 17, 31)',
     boxColor: '#1c1c33',
-    textTest: '#bec4d7',
-    level4: '#ffe061',
-    level3: '#ffa061',
-    level2: '#2ecc71',
+
+    scrollBarThumb: '#919BA8',
+    scrollBarThumbHover: '#E6F1FF',
   },
   shading: {
     soft: 'box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);',
@@ -53,12 +46,11 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${theme.colors.background};
     color: ${theme.colors.white};
-    /* background: linear-gradient(180deg, rgba(29,29,54,1) 0%, rgba(17,17,31,1) 95%); */
-    /* background: linear-gradient(180deg, rgba(22,16,38,1) 0%, rgba(17, 17, 31, 1) 95%); */
   }
   
   ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
   }
 
   /* Track */
@@ -68,13 +60,16 @@ export const GlobalStyle = createGlobalStyle`
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #919BA8; 
+    background: ${theme.colors.scrollBarThumb};
     border-radius: 10px;
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #E6F1FF; 
+    background: ${theme.colors.scrollBarThumbHover}; 
+  }
+  ::-webkit-scrollbar-corner {
+    border-radius: 10px;
   }
 
   a {
@@ -109,7 +104,7 @@ export const H3 = styled.h3`
   margin-bottom: 10px;
 `;
 
-export const ButtonDesign = styled.div`
+export const RoundButtonDesign = styled.div`
   border: 1px solid ${theme.colors.green};
   color: ${theme.colors.white};
   padding: 0 25px;
@@ -125,7 +120,7 @@ export const ButtonDesign = styled.div`
 
   :hover {
     background: ${theme.colors.green};
-    color: ${theme.colors.textDark};
+    color: ${theme.colors.black};
   }
 `;
 
