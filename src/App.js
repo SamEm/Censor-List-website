@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from './theme/GlobalStyles';
 // import MetaTags from 'react-meta-tags';
-import { OuterContainer, InnerCont, ButtonDesign, Bold, H1 } from './theme/GlobalStyles';
+import { OuterContainer, H1 } from './theme/GlobalStyles';
 import LeftBar from './components/LeftBar';
 import Categories from './components/Categories';
 
@@ -22,8 +22,8 @@ export default function App() {
   useEffect(() => {
     const LoadWords = () => {
       try {
-        setCategoryList([...ListOfCategories]); //placeholder until API call
-        ListOfCategories.forEach(category => { // loop through all categories
+        setCategoryList([...ListOfCategories]);
+        ListOfCategories.forEach(category => {
           setFilterCategories(cats => {
             if(cats && !cats.includes(category.categoryName)) {
               return [...cats, category.categoryName]
@@ -39,15 +39,6 @@ export default function App() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  // Bot options.
-  // Presets for Dyno, Gearbot etc
-  // Dyno:
-  //   - Changes Download button with "copy"
-  //   - Output is comma separated and copy-able
-  // Gearbot:
-  //   - Keeps Download button
-  //   - Output is new lined
 
   console.log('-----', selectedPhrases)
 
