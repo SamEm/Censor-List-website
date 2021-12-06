@@ -3,7 +3,7 @@ A tool created to enhance Discord moderation bots by providing an easy way to bu
 
 > **Warning: This project contains slurs, slurs, spam characters and other offensive phrases**
 
-### If you have suggestions for other bots that can be added please create a PR.
+### If you have suggestions for other bots that can be added to this system, please let me know.
 
 ## To install and run it:
 
