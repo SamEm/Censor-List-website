@@ -30,7 +30,7 @@ export default function Download({ selectedPhrases, globalState }) {
   return(
     <DownloadBar>
       <RoundButtonDesign onClick={downloadFile}>
-        Download
+        Download file
       </RoundButtonDesign>
       <HiddenLink
         download={fileName}
