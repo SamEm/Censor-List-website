@@ -6,8 +6,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 const theme = {
 
   colors: {
-    primary: '#b5d784',
-    primaryHover: '#d22e4c',
+    primary: '#d22e4c',
     primaryActive: '',
     button: 'rgba(38, 38, 69, 1)',
     buttonHover: 'rgba(34, 34, 61, 1)',
