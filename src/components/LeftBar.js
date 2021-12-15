@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { H3, RoundButtonDesign } from '../theme/GlobalStyles';
 import Download from './Download';
+import { SiKofi, SiTwitter, SiGithub } from 'react-icons/si';
+import frootIcon from '../assets/logo.png';
 
 export default function LeftBar({ filterCategories, selectedPhrases, globalState, setGlobalState }) {
   const [buttonState, setButtonState] = useState({
@@ -9,8 +11,8 @@ export default function LeftBar({ filterCategories, selectedPhrases, globalState
     dyno: false,
   });
   const [phraseCountHigh, setPhraseCountHigh] = useState(false);
-  const {gearbot, dyno} = buttonState;
-  
+  const { gearbot, dyno } = buttonState;
+
   useEffect(() => {
     if (selectedPhrases.length <= 400) {
       setPhraseCountHigh(false);
@@ -36,10 +38,10 @@ export default function LeftBar({ filterCategories, selectedPhrases, globalState
   const copyText = () => {
     navigator.clipboard.writeText(selectedPhrases);
   }
-  
-  return(
+
+  return (
     <Container>
-      <HeaderWrap>
+      <LeftBarWrap>
         <WordCountWrap phraseCountHigh={phraseCountHigh}>
           <H3>Phrases picked:</H3>
           <WordCount>
@@ -48,7 +50,7 @@ export default function LeftBar({ filterCategories, selectedPhrases, globalState
         </WordCountWrap>
         <Wrap>
           <H3>Choose bot preset</H3>
-          <Preset 
+          <Preset
             onClick={changePreset}
             data-preset='gearbot'
             data-join={'\n'}
@@ -69,27 +71,37 @@ export default function LeftBar({ filterCategories, selectedPhrases, globalState
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
           </p>
         </Wrap>
-        {
-          !!gearbot && 
-          <Download
-            selectedPhrases={selectedPhrases}
-            globalState={globalState}
-          />
-        }
-        {
-          !!dyno && 
-          <RoundButtonDesign onClick={copyText}>
-            Copy phrases
-          </RoundButtonDesign>
-        }
-        
-        <PreviewWrap>
-          <H3>File preview:</H3>
-          <Preview>
-            {selectedPhrases.join(globalState.presetSplit)}
-          </Preview>
-        </PreviewWrap>
-      </HeaderWrap>
+        <Wrap>
+          {
+            !!gearbot &&
+            <Download
+              selectedPhrases={selectedPhrases}
+              globalState={globalState}
+            />
+          }
+          {
+            !!dyno &&
+            <RoundButtonDesign onClick={copyText}>
+              Copy phrases
+            </RoundButtonDesign>
+          }
+
+          <PreviewWrap>
+            {!!gearbot && <H3>File preview:</H3>}
+            {!!dyno && <H3>List preview:</H3>}
+            
+            <Preview>
+              {selectedPhrases.join(globalState.presetSplit)}
+            </Preview>
+          </PreviewWrap>
+        </Wrap>
+      </LeftBarWrap>
+      <Socials>
+        <Link target="_blank" href="https://logiz.net/"><Froot src={frootIcon} /></Link>
+        <Link target="_blank" href="https://twitter.com/Logiz_"><SiTwitter /></Link>
+        <Link target="_blank" href="https://github.com/SamEm/Censor-List-website"><SiGithub /></Link>
+        <Link target="_blank" href="https://ko-fi.com/R5R47HAVP"><SiKofi /></Link>
+      </Socials>
     </Container>
   )
 }
@@ -99,13 +111,14 @@ const Container = styled.div`
   width: 300px;
   height: 100vh;
   background: ${props => props.theme.colors.boxColor};
+  overflow: scroll;
 `;
 
-const HeaderWrap = styled.div`
+const LeftBarWrap = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 70px 30px;
-  gap: 20px;
+  padding: 70px 20px 45px 30px;
+  gap: 30px;
 `;
 
 const WordCountWrap = styled.div`
@@ -145,7 +158,9 @@ const Preset = styled.div`
   }
 `;
 
-const PreviewWrap = styled.div``;
+const PreviewWrap = styled.div`
+  margin-top: 15px;
+`;
 
 const Preview = styled.pre`
   height: 200px;
@@ -153,4 +168,33 @@ const Preview = styled.pre`
   background: ${props => props.theme.colors.background};
   border-radius: 10px;
   padding: 15px;
+`;
+
+const Socials = styled.div`
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  background: ${props => props.theme.colors.boxColor};
+  padding-top: 10px;
+`;
+
+const Link = styled.a`
+  font-size: 25px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  :hover {
+    border-radius: 100%;
+    background-color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+const Froot = styled.img`
+  width: 25px;
 `;
