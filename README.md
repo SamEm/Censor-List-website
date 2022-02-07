@@ -1,9 +1,9 @@
-# Censor list.
+# Censor list. - This tool is still a WIP.
 A tool created to enhance Discord moderation bots by providing an easy way to bulk input phrases to censor in bots that allows for it.
 
 > **Warning: This project contains slurs, slurs, spam characters and other offensive phrases**
 
-### Website: TBD
+### Website: https://censor.awh.no
 
 > If you have suggestions for other bots that can be added to this system, please let me know.
 
