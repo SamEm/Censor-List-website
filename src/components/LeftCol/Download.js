@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import styled from "styled-components";
-import { RoundButtonDesign } from '../theme/GlobalStyles';
+import { RoundButtonDesign } from '../../theme/GlobalStyles';
 
 export default function Download({ selectedPhrases, globalState }) {
   const [fileName, setFileName] = useState(null);

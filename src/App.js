@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from './theme/GlobalStyles';
 // import MetaTags from 'react-meta-tags';
 import { OuterContainer, H1 } from './theme/GlobalStyles';
-import LeftBar from './components/LeftBar';
+import LeftCol from './components/LeftCol/LeftCol';
 import Categories from './components/Categories';
 
 import ListOfCategories from './censors/bad_phrases.json';
@@ -14,10 +14,6 @@ export default function App() {
   const [selectedPhrases, setSelectedPhrases] = useState([]);
   const [categoryList, setCategoryList] = useState(null);
   const [filterCategories, setFilterCategories] = useState([]);
-  const [globalState, setGlobalState] = useState({
-    preset: 'gearbot',
-    presetSplit: '\n'
-  })
 
   useEffect(() => {
     const LoadWords = () => {
@@ -46,11 +42,9 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <OuterContainer>
-        <LeftBar 
+        <LeftCol 
           filterCategories={filterCategories} 
           selectedPhrases={selectedPhrases}
-          globalState={globalState}
-          setGlobalState={setGlobalState}
         />
         <Wrap>
           <Explainer>

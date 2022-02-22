@@ -20,6 +20,7 @@ export default function Categories({ categoryList, selectedPhrases, setSelectedP
       }
     })
   }
+  
   const removeAllClick = e => {
     const categoryName = e.target.dataset.value;
     const category = categoryList.find(e => e.categoryName === categoryName);
